@@ -7,7 +7,6 @@ import android.animation.PropertyValuesHolder;
 import android.graphics.Point;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
@@ -114,6 +113,7 @@ public class BouncyAnimationHandler extends MenuAnimationHandler {
 
     @Override
     protected void setAnimating(boolean animating) {
+        super.setAnimating(animating);
         this.animating = animating;
     }
 

@@ -108,6 +108,7 @@ public class DefaultAnimationHandler extends MenuAnimationHandler {
 
     @Override
     protected void setAnimating(boolean animating) {
+        super.setAnimating(animating);
         this.animating = animating;
     }
 

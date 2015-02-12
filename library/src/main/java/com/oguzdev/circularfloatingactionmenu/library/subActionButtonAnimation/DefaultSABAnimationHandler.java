@@ -5,7 +5,6 @@ import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.OvershootInterpolator;
 
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
