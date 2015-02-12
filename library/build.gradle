@@ -5,8 +5,7 @@ android {
     buildToolsVersion "21.1.1"
 
     defaultConfig {
-        // applicationId "com.oguzdev.circularfloatingactionmenu.library"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 21
         versionCode 3
         versionName "1.0.2"
@@ -27,5 +26,3 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
-
-// apply from: '../gradle-mvn-push.gradle'
