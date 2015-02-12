@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
+import com.oguzdev.circularfloatingactionmenu.library.animation.BouncyAnimationHandler;
 
 public class MenuWithFABActivity extends ActionBarActivity {
 
@@ -137,6 +138,7 @@ public class MenuWithFABActivity extends ActionBarActivity {
                 .addSubActionView(lCSubBuilder.setContentView(lcIcon3, blueContentParams).build())
                 .addSubActionView(lCSubBuilder.setContentView(lcIcon4, blueContentParams).build())
                 .addSubActionView(lCSubBuilder.setContentView(lcIcon5, blueContentParams).build())
+                .setAnimationHandler(new BouncyAnimationHandler())
                 .setRadius(redActionMenuRadius)
                 .setStartAngle(70)
                 .setEndAngle(-70)
