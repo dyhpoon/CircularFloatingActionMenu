@@ -10,6 +10,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.oguzdev.circularfloatingactionmenu.library.subActionButtonAnimation.DefaultSABAnimationHandler;
+import com.oguzdev.circularfloatingactionmenu.library.subActionButtonAnimation.SubActionButtonAnimationHandler;
+
 /**
  * A simple button implementation with a similar look an feel to{@link FloatingActionButton}.
  */
@@ -20,7 +23,7 @@ public class SubActionButton extends FrameLayout {
     public static final int THEME_LIGHTER = 2;
     public static final int THEME_DARKER = 3;
 
-    public SubActionButton(Context context, FrameLayout.LayoutParams layoutParams, int theme, Drawable backgroundDrawable, View contentView, FrameLayout.LayoutParams contentParams) {
+    public SubActionButton(Context context, FrameLayout.LayoutParams layoutParams, int theme, Drawable backgroundDrawable, View contentView, FrameLayout.LayoutParams contentParams, final SubActionButtonAnimationHandler animationHandler) {
         super(context);
         setLayoutParams(layoutParams);
         // If no custom backgroundDrawable is specified, use the background drawable of the theme.
@@ -48,7 +51,15 @@ public class SubActionButton extends FrameLayout {
         if(contentView != null) {
             setContentView(contentView, contentParams);
         }
-        setClickable(true);
+        if (animationHandler != null) {
+            setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!animationHandler.isAnimating())
+                        animationHandler.animateOnTouchSubActionButton((SubActionButton) v);
+                }
+            });
+        }
     }
 
     /**
@@ -95,6 +106,7 @@ public class SubActionButton extends FrameLayout {
         private Drawable backgroundDrawable;
         private View contentView;
         private FrameLayout.LayoutParams contentParams;
+        private SubActionButtonAnimationHandler animationHandler;
 
         public Builder(Context context) {
             this.context = context;
@@ -104,6 +116,7 @@ public class SubActionButton extends FrameLayout {
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(size, size, Gravity.TOP | Gravity.LEFT);
             setLayoutParams(params);
             setTheme(SubActionButton.THEME_LIGHT);
+            animationHandler = new DefaultSABAnimationHandler();
         }
 
         public Builder setLayoutParams(FrameLayout.LayoutParams params) {
@@ -132,13 +145,19 @@ public class SubActionButton extends FrameLayout {
             return this;
         }
 
+        public Builder setAnimationHandler(SubActionButtonAnimationHandler animationHandler) {
+            this.animationHandler = animationHandler;
+            return this;
+        }
+
         public SubActionButton build() {
             return new SubActionButton(context,
                     layoutParams,
                     theme,
                     backgroundDrawable,
                     contentView,
-                    contentParams);
+                    contentParams,
+                    animationHandler);
         }
     }
 }
