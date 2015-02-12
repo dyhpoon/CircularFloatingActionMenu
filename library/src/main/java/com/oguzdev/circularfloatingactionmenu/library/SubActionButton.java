@@ -22,11 +22,9 @@ public class SubActionButton extends FrameLayout {
     public static final int THEME_DARK = 1;
     public static final int THEME_LIGHTER = 2;
     public static final int THEME_DARKER = 3;
-    private boolean mMenuIsAnimating;
 
     public SubActionButton(Context context, FrameLayout.LayoutParams layoutParams, int theme, Drawable backgroundDrawable, View contentView, FrameLayout.LayoutParams contentParams, final SubActionButtonAnimationHandler animationHandler) {
         super(context);
-        mMenuIsAnimating = false;
         setLayoutParams(layoutParams);
         // If no custom backgroundDrawable is specified, use the background drawable of the theme.
         if(backgroundDrawable == null) {
@@ -57,15 +55,11 @@ public class SubActionButton extends FrameLayout {
             setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!animationHandler.isAnimating() && !mMenuIsAnimating)
+                    if (!animationHandler.isAnimating() && !isEnabled())
                         animationHandler.animateOnTouchSubActionButton((SubActionButton) v);
                 }
             });
         }
-    }
-
-    public void setMenuIsAnimating(boolean animating) {
-        mMenuIsAnimating = animating;
     }
 
     /**

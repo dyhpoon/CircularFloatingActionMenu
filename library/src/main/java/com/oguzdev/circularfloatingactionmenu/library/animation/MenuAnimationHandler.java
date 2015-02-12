@@ -10,7 +10,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
-import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 /**
  * An abstract class that is a prototype for the actual animation handlers
@@ -131,7 +130,7 @@ public abstract class MenuAnimationHandler {
     protected void setAnimating(boolean animating) {
         if (menu != null) {
             for (int i = 0; i < menu.getSubActionItems().size(); i++) {
-                ((SubActionButton)menu.getSubActionItems().get(i).view).setMenuIsAnimating(animating);
+                menu.getSubActionItems().get(i).view.setEnabled(animating);
             }
         }
     };
