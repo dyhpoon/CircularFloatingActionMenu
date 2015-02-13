@@ -55,7 +55,7 @@ public class SubActionButton extends FrameLayout {
             setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!animationHandler.isAnimating() && !isEnabled())
+                    if (!animationHandler.isAnimating() && isEnabled())
                         animationHandler.animateOnTouchSubActionButton((SubActionButton) v);
                 }
             });

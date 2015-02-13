@@ -130,7 +130,7 @@ public abstract class MenuAnimationHandler {
     protected void setAnimating(boolean animating) {
         if (menu != null) {
             for (int i = 0; i < menu.getSubActionItems().size(); i++) {
-                menu.getSubActionItems().get(i).view.setEnabled(animating);
+                menu.getSubActionItems().get(i).view.setEnabled(!animating);
             }
         }
     };
