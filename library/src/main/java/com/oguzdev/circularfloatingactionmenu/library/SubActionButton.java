@@ -3,6 +3,7 @@
  */
 package com.oguzdev.circularfloatingactionmenu.library;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -86,6 +87,7 @@ public class SubActionButton extends FrameLayout {
         setContentView(contentView, null);
     }
 
+    @TargetApi(16)
     private void setBackgroundResource(Drawable drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             setBackground(drawable);

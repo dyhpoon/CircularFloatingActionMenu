@@ -3,6 +3,7 @@
  */
 package com.oguzdev.circularfloatingactionmenu.library;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -214,6 +215,7 @@ public class FloatingActionButton extends FrameLayout {
         return (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
     }
 
+    @TargetApi(16)
     private void setBackgroundResource(Drawable drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             setBackground(drawable);
