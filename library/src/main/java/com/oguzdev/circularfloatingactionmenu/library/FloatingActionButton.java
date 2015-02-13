@@ -31,6 +31,7 @@ public class FloatingActionButton extends FrameLayout {
     public static final int POSITION_BOTTOM_LEFT = 6;
     public static final int POSITION_LEFT_CENTER = 7;
     public static final int POSITION_TOP_LEFT = 8;
+    public static final int POSITION_CENTER = 9;
 
     private View contentView;
 
@@ -107,6 +108,9 @@ public class FloatingActionButton extends FrameLayout {
                 break;
             case POSITION_TOP_LEFT:
                 gravity = Gravity.TOP | Gravity.LEFT;
+                break;
+            case POSITION_CENTER:
+                gravity = Gravity.CENTER;
                 break;
             case POSITION_BOTTOM_RIGHT:
             default:
