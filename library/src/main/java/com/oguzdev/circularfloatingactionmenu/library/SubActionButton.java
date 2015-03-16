@@ -24,7 +24,7 @@ public class SubActionButton extends FrameLayout {
     public static final int THEME_LIGHTER = 2;
     public static final int THEME_DARKER = 3;
 
-    public SubActionButton(Context context, FrameLayout.LayoutParams layoutParams, int theme, Drawable backgroundDrawable, View contentView, FrameLayout.LayoutParams contentParams, final SubActionButtonAnimationHandler animationHandler) {
+    public SubActionButton(Context context, FrameLayout.LayoutParams layoutParams, int theme, Drawable backgroundDrawable, View contentView, FrameLayout.LayoutParams contentParams, final SubActionButtonAnimationHandler animationHandler, final OnBounceListener listener) {
         super(context);
         setLayoutParams(layoutParams);
         // If no custom backgroundDrawable is specified, use the background drawable of the theme.
@@ -57,7 +57,7 @@ public class SubActionButton extends FrameLayout {
                 @Override
                 public void onClick(View v) {
                     if (!animationHandler.isAnimating() && isEnabled())
-                        animationHandler.animateOnTouchSubActionButton((SubActionButton) v);
+                        animationHandler.animateOnTouchSubActionButton((SubActionButton) v, listener);
                 }
             });
         }
@@ -109,6 +109,7 @@ public class SubActionButton extends FrameLayout {
         private View contentView;
         private FrameLayout.LayoutParams contentParams;
         private SubActionButtonAnimationHandler animationHandler;
+        private OnBounceListener bounceListener;
 
         public Builder(Context context) {
             this.context = context;
@@ -152,6 +153,11 @@ public class SubActionButton extends FrameLayout {
             return this;
         }
 
+        public Builder setBounceListener(OnBounceListener listener) {
+            this.bounceListener = listener;
+            return this;
+        }
+
         public SubActionButton build() {
             return new SubActionButton(context,
                     layoutParams,
@@ -159,7 +165,8 @@ public class SubActionButton extends FrameLayout {
                     backgroundDrawable,
                     contentView,
                     contentParams,
-                    animationHandler);
+                    animationHandler,
+                    bounceListener);
         }
     }
 }

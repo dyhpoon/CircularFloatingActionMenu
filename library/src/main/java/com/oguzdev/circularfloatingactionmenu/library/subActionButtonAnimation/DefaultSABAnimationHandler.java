@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import com.oguzdev.circularfloatingactionmenu.library.OnBounceListener;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 /**
@@ -21,7 +22,7 @@ public class DefaultSABAnimationHandler extends SubActionButtonAnimationHandler 
     }
 
     @Override
-    public void animateOnTouchSubActionButton(SubActionButton button) {
+    public void animateOnTouchSubActionButton(SubActionButton button, OnBounceListener listener) {
         setAnimating(true);
         PropertyValuesHolder pvhsX = PropertyValuesHolder.ofFloat(View.SCALE_X, 1.25f);
         PropertyValuesHolder pvhsY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.25f);
@@ -33,7 +34,7 @@ public class DefaultSABAnimationHandler extends SubActionButtonAnimationHandler 
         bounce.setInterpolator(new AccelerateDecelerateInterpolator());
         bounce.start();
 
-        bounce.addListener(new LastAnimationListener());
+        bounce.addListener(new LastAnimationListener(listener));
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.oguzdev.circularfloatingactionmenu.library.subActionButtonAnimation;
 
 import android.animation.Animator;
 
+import com.oguzdev.circularfloatingactionmenu.library.OnBounceListener;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 /**
@@ -9,13 +10,19 @@ import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
  */
 public abstract class SubActionButtonAnimationHandler {
 
-    public abstract void animateOnTouchSubActionButton(SubActionButton button);
+    public abstract void animateOnTouchSubActionButton(SubActionButton button, OnBounceListener listener);
 
     public abstract boolean isAnimating();
 
     protected abstract void setAnimating(boolean animating);
 
     public class LastAnimationListener implements Animator.AnimatorListener {
+
+        public OnBounceListener mBounceListener;
+
+        public LastAnimationListener(OnBounceListener listener) {
+            mBounceListener = listener;
+        }
 
         @Override
         public void onAnimationStart(Animator animation) {
@@ -25,6 +32,9 @@ public abstract class SubActionButtonAnimationHandler {
         @Override
         public void onAnimationEnd(Animator animation) {
             setAnimating(false);
+            if (mBounceListener != null) {
+                mBounceListener.onBounce();
+            }
         }
 
         @Override
